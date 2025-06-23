@@ -1,0 +1,36 @@
+{
+  "name": "Ikebana 3D Dev",
+  "build": {
+    "context": "..",
+    "dockerfile": "Dockerfile"
+  },
+
+  /* ★ ここがポイント ―― 常駐させる ★ */
+  "overrideCommand": true,
+  "command": "/bin/sh -c 'while sleep 3600; do :; done'",
+
+
+  "settings": {
+    "terminal.integrated.defaultProfile.linux": "fish",
+    "python.pythonPath": "/usr/local/bin/python",
+    "editor.formatOnSave": true
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.black-formatter",
+        "ms-python.flake8",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  },
+
+  "forwardPorts": [5000],
+
+  "postCreateCommand": "pip install --no-cache-dir -r requirements.txt",
+
+  "remoteUser": "vscode"
+}

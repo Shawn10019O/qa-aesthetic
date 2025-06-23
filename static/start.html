@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>花材と花器を選択</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <style>
+    :root {
+      --primary-color: #007bff;
+      --card-bg: #ffffff;
+      --body-bg: #f0f2f5;
+      --text-color: #333333;
+      --transition-speed: 0.3s;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 2em;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--body-bg);
+      color: var(--text-color);
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1em;
+      text-align: center;
+    }
+
+    .section {
+      margin-bottom: 2.5em;
+    }
+
+    .section h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.75em;
+      border-bottom: 2px solid var(--primary-color);
+      display: inline-block;
+      padding-bottom: 0.25em;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1.5em;
+    }
+
+    .option-card {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      padding: 0.75em;
+      text-align: center;
+      cursor: pointer;
+      transition: transform var(--transition-speed), box-shadow var(--transition-speed), border-color var(--transition-speed);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      border: 2px solid transparent;
+    }
+
+    .option-card input[type="radio"] {
+      display: none;
+    }
+
+    .option-card model-viewer {
+      width: 100%;
+      height: 160px;
+      background-color: #fafafa;
+      border-radius: 8px;
+      margin-bottom: 0.5em;
+    }
+
+    .option-card:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    }
+
+    .option-card.selected {
+      border-color: var(--primary-color);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    }
+
+    .option-card span {
+      display: block;
+      font-weight: 500;
+      margin-top: 0.25em;
+      color: var(--text-color);
+    }
+
+    button {
+      display: block;
+      margin: 0 auto;
+      padding: 0.75em 1.5em;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      background-color: var(--primary-color);
+      color: #fff;
+      cursor: pointer;
+      transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      max-width: 200px;
+      width: 100%;
+    }
+
+    button:hover:not(:disabled) {
+      background-color: #0056b3;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    button:disabled {
+      background-color: #ccc;
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+
+    @media (max-width: 600px) {
+      .options-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1em;
+        overflow-x: visible;
+        /* 横スクロール解除 */
+      }
+
+      /* カード内モデルのサイズを少し小さく */
+      .option-card {
+        flex: none;
+        width: auto;
+      }
+
+      .option-card model-viewer {
+        height: 120px;
+      }
+
+      button {
+        max-width: none;
+        width: 100%;
+      }
+    }
+    @media (max-width: 400px) {
+      .options-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h2>使用したい花材と花器を選んでください</h2>
+
+  <div class="section">
+    <h3>花材</h3>
+    <div class="options-grid" id="flowerOptions">
+      <label class="option-card">
+        <input type="radio" name="flower" value="桜">
+        <model-viewer src="/static/3d/keisakura.glb" alt="桜の3Dモデル" camera-controls auto-rotate></model-viewer>
+        <span>桜</span>
+      </label>
+      <label class="option-card">
+        <input type="radio" name="flower" value="リアトリス">
+        <model-viewer src="/static/3d/ria.glb" alt="リアトリスの3Dモデル" camera-controls auto-rotate></model-viewer>
+        <span>リアトリス</span>
+      </label>
+      <label class="option-card">
+        <input type="radio" name="flower" value="ディル">
+        <model-viewer src="/static/3d/digu.glb" alt="ディルの3Dモデル" camera-controls auto-rotate></model-viewer>
+        <span>ディル</span>
+      </label>
+      <label class="option-card">
+        <input type="radio" name="flower" value="モルセラ">
+        <model-viewer src="/static/3d/morusera.glb" alt="モルセラの3Dモデル" camera-controls auto-rotate></model-viewer>
+        <span>モルセラ</span>
+      </label>
+      <label class="option-card">
+        <input type="radio" name="flower" value="バラ">
+        <model-viewer src="/static/3d/rose.glb" alt="バラの3Dモデル" camera-controls auto-rotate></model-viewer>
+        <span>バラ</span>
+      </label>
+      <label class="option-card">
+        <input type="radio" name="flower" value="牡丹">
+        <model-viewer src="/static/3d/hasu.glb" alt="牡丹の3Dモデル" camera-controls auto-rotate></model-viewer>
+        <span>牡丹</span>
+      </label>
+      <label class="option-card">
+        <input type="radio" name="flower" value="ユリ">
+        <model-viewer src="/static/3d/yuri.glb" alt="ユリの3Dモデル" camera-controls auto-rotate></model-viewer>
+        <span>ユリ</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>花器</h3>
+    <div class="options-grid" id="vaseOptions">
+      <label class="option-card">
+        <input type="radio" name="vase" value="筒型花器">
+        <model-viewer src="/static/3d/kaki2.glb" alt="筒型花器の3Dモデル" camera-controls auto-rotate></model-viewer>
+        <span>筒型花器</span>
+      </label>
+      <label class="option-card">
+        <input type="radio" name="vase" value="皿型花器">
+        <model-viewer src="/static/3d/kaki1.glb" alt="皿型花器の3Dモデル" camera-controls auto-rotate></model-viewer>
+        <span>皿型花器</span>
+      </label>
+    </div>
+  </div>
+
+  <button id="goBtn" disabled>決定</button>
+
+  <script>
+    const flowerCards = document.querySelectorAll('#flowerOptions .option-card');
+    const vaseCards = document.querySelectorAll('#vaseOptions .option-card');
+    const goBtn = document.getElementById('goBtn');
+
+    function updateSelection() {
+      flowerCards.forEach(card => {
+        const input = card.querySelector('input');
+        card.classList.toggle('selected', input.checked);
+      });
+      vaseCards.forEach(card => {
+        const input = card.querySelector('input');
+        card.classList.toggle('selected', input.checked);
+      });
+      const flowerChosen = !!document.querySelector('input[name="flower"]:checked');
+      const vaseChosen = !!document.querySelector('input[name="vase"]:checked');
+      goBtn.disabled = !(flowerChosen && vaseChosen);
+    }
+
+    flowerCards.forEach(card => card.addEventListener('click', updateSelection));
+    vaseCards.forEach(card => card.addEventListener('click', updateSelection));
+
+    goBtn.addEventListener('click', () => {
+      const flower = document.querySelector('input[name="flower"]:checked').value;
+      const vase = document.querySelector('input[name="vase"]:checked').value;
+      window.location.href = `/viewer?forced_flower=${encodeURIComponent(flower)}&vase=${encodeURIComponent(vase)}`;
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+# .dockerignore
+
+# Python bytecode ／ キャッシュ
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 仮想環境
+venv/
+env/
+.venv/
+.env/
+
+# Git 管理外ファイル
+.git/
+.gitignore
+
+# SQLite データベースや生成ファイル
+*.db
+ikebana.db
+pcds/
+logs/
+
+# IDE／エディタ設定
+.vscode/
+.idea/
+*.swp
+
+# OS 一時ファイル
+.DS_Store
+Thumbs.db
+
+# Node / model-viewer キャッシュ
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
